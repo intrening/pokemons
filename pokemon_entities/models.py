@@ -22,7 +22,7 @@ class Pokemon (models.Model):
         blank=True,
         null=True,
         on_delete=models.CASCADE,
-        related_name='child',
+        related_name='next_evolutions',
         verbose_name='из кого эволюционировал'
     )
 
@@ -33,8 +33,8 @@ class Pokemon (models.Model):
         return self.image.url
 
     def next_evolution(self):
-        if self.child.exists():
-            return self.child.all()[0]
+        if self.next_evolutions.exists():
+            return self.next_evolutions.all()[0]
         return None
 
     def pokemon_id(self):
