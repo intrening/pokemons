@@ -16,7 +16,7 @@ class Pokemon (models.Model):
         blank=True
     )
     image = models.ImageField(verbose_name='изображение', blank=True, null=True)
-    description = models.TextField('описание', null=True)
+    description = models.TextField('описание')
     previous_evolution = models.ForeignKey(
         "self",
         blank=True,
