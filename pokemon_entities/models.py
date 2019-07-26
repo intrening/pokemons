@@ -3,8 +3,18 @@ from django.db import models
 
 class Pokemon (models.Model):
     title_ru = models.CharField('название на русском', max_length=200)
-    title_en = models.CharField('название на английском', max_length=200)
-    title_jp = models.CharField('название на японском', max_length=200)
+    title_en = models.CharField(
+        'название на английском',
+        max_length=200,
+        null=True,
+        blank=True
+    )
+    title_jp = models.CharField(
+        'название на японском',
+        max_length=200,
+        null=True,
+        blank=True
+    )
     image = models.ImageField(verbose_name='изображение', blank=True, null=True)
     description = models.TextField('описание', null=True)
     previous_evolution = models.ForeignKey(
@@ -37,8 +47,8 @@ class PokemonEntity(models.Model):
     lon = models.FloatField('координата longitude')
     appeared_at = models.DateTimeField('время появления')
     disappeared_at = models.DateTimeField('время исчезания')
-    level = models.IntegerField('уровень')
-    health = models.IntegerField('здоровье')
-    strength = models.IntegerField('сила')
-    defence = models.IntegerField('урон')
-    stamina = models.IntegerField('выносливость')
+    level = models.IntegerField('уровень', null=True, blank=True)
+    health = models.IntegerField('здоровье', null=True, blank=True)
+    strength = models.IntegerField('сила', null=True, blank=True)
+    defence = models.IntegerField('урон', null=True, blank=True)
+    stamina = models.IntegerField('выносливость', null=True, blank=True)
