@@ -29,20 +29,19 @@ class Pokemon (models.Model):
     def __str__(self):
         return self.title_ru
 
-    def img_url(self):
-        return self.image.url
-
     def next_evolution(self):
         if self.next_evolutions.exists():
             return self.next_evolutions.all()[0]
         return None
 
-    def pokemon_id(self):
-        return self.id
-
 
 class PokemonEntity(models.Model):
-    pokemon = models.ForeignKey(Pokemon, on_delete=models.CASCADE,verbose_name='покемон')
+    pokemon = models.ForeignKey(
+        Pokemon,
+        on_delete=models.CASCADE,
+        verbose_name='покемон',
+        related_name='pokemon_entities'
+    )
     lat = models.FloatField('координата latitude')
     lon = models.FloatField('координата longitude')
     appeared_at = models.DateTimeField('время появления')
